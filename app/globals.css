@@ -1,10 +1,12 @@
+
 @import "tailwindcss";
 
 @theme {
-  /* Tipografía del sistema, como en la referencia (Segoe UI en Windows, SF en macOS). */
-  --font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  /* Tipografía elegante y moderna */
+  --font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 
+  /* Animación de entrada */
   --animate-fade-in: fade-in 0.35s ease-out both;
 
   @keyframes fade-in {
@@ -12,6 +14,7 @@
       opacity: 0;
       transform: translateY(6px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -19,21 +22,78 @@
   }
 }
 
+/* Configuración global */
 :root {
   color-scheme: dark;
+
+  --background: #08090d;
+  --foreground: #f1f5f9;
+
+  --accent-lavender: #c4b5fd;
+  --accent-blue: #a5d8ff;
+  --accent-pink: #f0abfc;
+  --accent-gray: #94a3b8;
 }
 
+/* Fondo general */
+html {
+  background-color: var(--background);
+  scroll-behavior: smooth;
+}
+
+/* Cuerpo de la aplicación */
 body {
   font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+
+  margin: 0;
+  min-height: 100vh;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Selección de texto */
+::selection {
+  background-color: rgba(196, 181, 253, 0.25);
+  color: #ffffff;
+}
+
+/* Scrollbar elegante */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #272936;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4050;
+}
+
+/* Transiciones suaves */
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Accesibilidad: reducir animaciones */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
